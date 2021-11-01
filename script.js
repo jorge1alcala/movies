@@ -25,10 +25,14 @@ function showMovies(movies) {
     const { title, poster_path, vote_average, overview } = movie;
     const movieEl = document.createElement("div");
     movieEl.classList.add("movie");
+    let picture_movie = `${IMG_PATH}${poster_path}`;
+    if (poster_path === null) {
+      picture_movie = `https://images.unsplash.com/photo-1545129139-1beb780cf337?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHRoZWF0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=300&q=430`;
+    }
     movieEl.innerHTML = `
     
         <img
-          src="${IMG_PATH + poster_path}"
+          src="${picture_movie}"
           alt="${title}"
         />
         <div class="movie-info">
@@ -43,6 +47,15 @@ function showMovies(movies) {
     main.appendChild(movieEl);
   });
 }
+
+//try to difined a null picture an empty picture
+// function pictureNull(picture) {
+//   if (picture !== null) {
+//     return picture_movie;
+//   } else {
+//     return "https://media.istockphoto.com/photos/pop-corn-and-on-red-armchair-cinema-picture-id1271522601?b=1&k=20&m=1271522601&s=170667a&w=0&h=azZRRchShbrwRgq58omc1HOYABnfDDOzXJatuaZrueQ=";
+//   }
+// }
 
 function getClassByRate(vote) {
   if (vote >= 8) {
